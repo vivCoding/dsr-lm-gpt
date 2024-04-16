@@ -1,0 +1,32 @@
+// represents a question asking about relation between two names
+// asks how is person2 related to person1, in person1's POV?
+type question(person1: String, person2: String)
+
+// context: the possible relationships in the current problem, and its associated probabilities
+// for each name pair, it will include a list of probabilities of ALL relationships
+// Example: Alice is Bob's daughter
+// context(daughter, bob, alice)
+type context(rela: usize, person1: String, person2: String)
+
+// describes how transitive relations are defined
+// if (a, b) has r1, and (b, c) has r2, then (a, c) has r3
+type transitive(r1: usize, r2: usize, r3: usize)
+
+// Things can be derived through context propagation
+// derived relationships that can taken solely from context
+rel derived(rela, person1, person2) = context(rela, person1, person2)
+
+// relationships we can derive from context and transitive rules
+// if relationship is transitive, and we derive a relationship from x and y, and relationship from y, z
+// we can form a relationship between x and z with relationship r3
+rel derived(r3, x, z) =
+    transitive(r1, r2, r3),
+    derived(r1, x, y),
+    derived(r2, y, z),
+    x != z
+
+// Answer
+// finally, we create relationship "answer" with person1 and person2 given we have derived it
+rel answer(rela) =
+    question(person1, person2),
+    derived(rela, person1, person2)
