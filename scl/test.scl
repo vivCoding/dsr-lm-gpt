@@ -15,9 +15,9 @@ type transitive(r1: usize, r2: usize, r3: usize)
 rel question = {("donald", "dorothy")}
 rel context = {
     0.95::(4, "donald", "michael"),
-    0.7::(2, "donald", "michael"),
-    0.95::(1, "michael", "dorothy"),
-    0.85::(2, "michael", "dorothy"),
+    0.05::(2, "donald", "michael"),
+    0.15::(0, "michael", "dorothy"),
+    0.85::(1, "michael", "dorothy"),
 }
 rel transitive = {
   (0, 0, 6), // daughter-daughter-granddaughter
@@ -132,3 +132,5 @@ rel derived(r3, x, z) =
 rel answer(rela) =
     question(person1, person2),
     derived(rela, person1, person2)
+
+query answer

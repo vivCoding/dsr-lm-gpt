@@ -2,7 +2,7 @@
 // asks how is person2 related to person1, in person1's POV?
 type question(person1: String, person2: String)
 
-// context: the possible relationships in the current problem, and its associated probabilities
+// context, aka the possible relationships in the current problem, and its associated probabilities
 // for each name pair, it will include a list of probabilities of ALL relationships
 // Example: Alice is Bob's daughter
 // context(daughter, bob, alice)
@@ -12,13 +12,7 @@ type context(rela: usize, person1: String, person2: String)
 // if (a, b) has r1, and (b, c) has r2, then (a, c) has r3
 type transitive(r1: usize, r2: usize, r3: usize)
 
-rel question = {("donald", "dorothy")}
-rel context = {
-    0.95::(4, "donald", "michael"),
-    0.7::(2, "donald", "michael"),
-    0.95::(1, "michael", "dorothy"),
-    0.85::(2, "michael", "dorothy"),
-}
+// hardcoded transitive rules (domain knowledge)
 rel transitive = {
   (0, 0, 6), // daughter-daughter-granddaughter
   (0, 1, 0), // daughter-sister-daughter
