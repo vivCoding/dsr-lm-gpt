@@ -37,28 +37,28 @@ relation_id_map = {
 
 relation_opposite = {
     'daughter': ["mother", "father"],
-  'sister': ["brother"],
-  'son': ["mother", "father"],
-  'aunt': ["niece", "nephew"],
-  'father': ["son", "daughter"],
-  'husband': ["wife"],
-  'granddaughter': ["grandmother", "grandfather"],
-  'brother': ["sister"],
-  'nephew': ["aunt", 'uncle'],
-  'mother': ["son", "daughter"],
-  'uncle': ["niece", "nephew"],
-  'grandfather': ["granddaughter", "grandson"],
-  'wife': ["husband"],
-  'grandmother': ["granddaughter", "grandson"],
-  'niece': ["aunt", "uncle"],
-  'grandson': ["grandmother", "grandfather"],
-  'son-in-law': ["mother-in-law", "father-in-law"],
-  'father-in-law': ["daughter-in-law", "son-in-law"],
-  'daughter-in-law': ["mother-in-law", "father-in-law"],
-  'mother-in-law': ["daughter-in-law", "son-in-law"]
+    'sister': ["brother"],
+    'son': ["mother", "father"],
+    'aunt': ["niece", "nephew"],
+    'father': ["son", "daughter"],
+    'husband': ["wife"],
+    'granddaughter': ["grandmother", "grandfather"],
+    'brother': ["sister"],
+    'nephew': ["aunt", 'uncle'],
+    'mother': ["son", "daughter"],
+    'uncle': ["niece", "nephew"],
+    'grandfather': ["granddaughter", "grandson"],
+    'wife': ["husband"],
+    'grandmother': ["granddaughter", "grandson"],
+    'niece': ["aunt", "uncle"],
+    'grandson': ["grandmother", "grandfather"],
+    'son-in-law': ["mother-in-law", "father-in-law"],
+    'father-in-law': ["daughter-in-law", "son-in-law"],
+    'daughter-in-law': ["mother-in-law", "father-in-law"],
+    'mother-in-law': ["daughter-in-law", "son-in-law"]
 }
 
-default_system_prompt = "Given a sentence and the names of two people choose the relationship between the people from the following options: daughter, sister, son, aunt, father, husband, granddaughter, brother, nephew, mother, uncle, grandfather, wife, grandmother, niece, grandson, son-in-law, father-in-law, daughter-in-law, mother-in-law, unkown. Answer in one word."
+default_system_prompt = "Given a sentence and the names of two people choose the relationship between the people from the following options: daughter, sister, son, aunt, father, husband, granddaughter, brother, nephew, mother, uncle, grandfather, wife, grandmother, niece, grandson, son-in-law, father-in-law, daughter-in-law, mother-in-law, unknown. Answer in one word."
 
 
 class CLUTRRDataset:
@@ -175,6 +175,7 @@ class DSRLMModel:
             num += 1
 
         return answer.lower(), probability / num
+    
     def extract_facts(self, sentence_name_pairs):
         facts = defaultdict(int)
         for sentences, names in sentence_name_pairs:

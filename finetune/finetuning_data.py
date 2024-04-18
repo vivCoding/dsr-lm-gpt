@@ -7,25 +7,25 @@ system_prompt = "Given a sentence and the names of two people choose the relatio
 
 relation_opposite = {
     'daughter': ["mother", "father"],
-  'sister': ["brother"],
-  'son': ["mother", "father"],
-  'aunt': ["niece", "nephew"],
-  'father': ["son", "daughter"],
-  'husband': ["wife"],
-  'granddaughter': ["grandmother", "grandfather"],
-  'brother': ["sister"],
-  'nephew': ["aunt", 'uncle'],
-  'mother': ["son", "daughter"],
-  'uncle': ["niece", "nephew"],
-  'grandfather': ["granddaughter", "grandson"],
-  'wife': ["husband"],
-  'grandmother': ["granddaughter", "grandson"],
-  'niece': ["aunt", "uncle"],
-  'grandson': ["grandmother", "grandfather"],
-  'son-in-law': ["mother-in-law", "father-in-law"],
-  'father-in-law': ["daughter-in-law", "son-in-law"],
-  'daughter-in-law': ["mother-in-law", "father-in-law"],
-  'mother-in-law': ["daughter-in-law", "son-in-law"]
+    'sister': ["brother"],
+    'son': ["mother", "father"],
+    'aunt': ["niece", "nephew"],
+    'father': ["son", "daughter"],
+    'husband': ["wife"],
+    'granddaughter': ["grandmother", "grandfather"],
+    'brother': ["sister"],
+    'nephew': ["aunt", 'uncle'],
+    'mother': ["son", "daughter"],
+    'uncle': ["niece", "nephew"],
+    'grandfather': ["granddaughter", "grandson"],
+    'wife': ["husband"],
+    'grandmother': ["granddaughter", "grandson"],
+    'niece': ["aunt", "uncle"],
+    'grandson': ["grandmother", "grandfather"],
+    'son-in-law': ["mother-in-law", "father-in-law"],
+    'father-in-law': ["daughter-in-law", "son-in-law"],
+    'daughter-in-law': ["mother-in-law", "father-in-law"],
+    'mother-in-law': ["daughter-in-law", "son-in-law"]
 }
 
 class CLUTRRDataset:
@@ -91,7 +91,12 @@ if __name__ == "__main__":
                         found = True
                 if not found:
                     continue
-            item = {"messages": [{"role": "system", "content": system_prompt}, {"role": "user", "content": prompt}, {"role": "assistant", "content": relationship}]}
+            item = {
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": prompt},
+                    {"role": "assistant", "content": relationship}
+                ]}
             json.dump(item, json_file)
             json_file.write("\n")
             count += 1
